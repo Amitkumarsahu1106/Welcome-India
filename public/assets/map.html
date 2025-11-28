@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive India Map - Visit India</title>
+    <link rel="stylesheet" href="./css/main.css">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+    <style>
+        /* Map Specific Styles */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #2d2c2c;
+            /* Fallback */
+            background-image: var(--gradient-body);
+            color: var(--text-light);
+        }
+
+        .map-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 20px 40px;
+            /* Top padding for fixed header */
+        }
+
+        .map-container {
+            width: 100%;
+            max-width: 1000px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-family: 'Lucida Sans', sans-serif;
+            font-style: italic;
+            background: linear-gradient(to right, #FF9933, #FFFFFF, #138808);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-size: 2.5rem;
+        }
+
+        #map {
+            width: 100%;
+            height: 700px;
+            background: transparent;
+            z-index: 1;
+        }
+
+        /* Custom Tooltip Styles for Labels */
+        .state-label {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            color: #fff;
+            font-weight: bold;
+            font-size: 10px;
+            text-shadow: 1px 1px 2px black;
+            text-align: center;
+        }
+
+        /* Hide tooltips on small screens if needed, or adjust size */
+        @media (max-width: 768px) {
+            #map {
+                height: 500px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .state-label {
+                font-size: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header (Copied from index.html for consistency) -->
+    <header>
+        <h1>Visit India</h1>
+
+        <div class="hamburger" id="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="about-me.html">About Me</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="map.html" class="active">Map</a></li>
+            </ul>
+        </nav>
+
+        <div class="dropdown-menu" id="dropdownMenu">
+            <a href="../../index.html">Home</a>
+            <a href="about-me.html">About Me</a>
+            <a href="login.html">Login</a>
+            <a href="map.html">Map</a>
+        </div>
+    </header>
+
+    <section class="map-section">
+        <h1>Explore India by State</h1>
+        <p style="margin-bottom: 20px; color: #ccc;">Click on any state to learn more about its culture and places.</p>
+
+        <div class="map-container">
+            <div id="map"></div>
+        </div>
+    </section>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <script>
+        // Toggle Hamburger Menu
+        const hamburger = document.getElementById('hamburger');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+
+        hamburger.addEventListener('click', () => {
+            dropdownMenu.classList.toggle('show');
+        });
+
+        // Initialize Leaflet Map
+        // Centered on India
+        const map = L.map('map', {
+            center: [22.5937, 78.9629],
+            zoom: 5,
+            zoomControl: true,
+            scrollWheelZoom: false,
+            doubleClickZoom: false,
+            touchZoom: false,
+            attributionControl: false,
+            dragging: true
+        });
+
+        // Add a tile layer (optional, but good for context, or we can keep it blank for just the shape)
+        // Using a dark theme tile layer to match the site
+        // L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        //     maxZoom: 19
+        // }).addTo(map);
+        // User requested "map me sare states ke naam dikhne chaiye", usually implies just the political map.
+        // Let's stick to just the GeoJSON polygons on a transparent background as per previous design.
+
+        // Fetch GeoJSON Data
+        fetch('https://raw.githubusercontent.com/geohacker/india/master/state/india_telengana.geojson')
+            .then(response => response.json())
+            .then(data => {
+                L.geoJSON(data, {
+                    style: style,
+                    onEachFeature: onEachFeature
+                }).addTo(map);
+            })
+            .catch(err => console.error('Error loading map data:', err));
+
+        function style(feature) {
+            return {
+                fillColor: getColor(feature.properties.NAME_1 || feature.properties.ST_NM),
+                weight: 1,
+                opacity: 1,
+                color: 'white',
+                dashArray: '3',
+                fillOpacity: 0.7
+            };
+        }
+
+        // Assign random or specific colors
+        function getColor(name) {
+            // We can use a palette or random colors. Let's use a nice palette.
+            const colors = ['#FF9933', '#138808', '#000080', '#e65100', '#1b5e20', '#0d47a1', '#f57f17', '#4a148c'];
+            // Simple hash function to pick a color
+            let hash = 0;
+            if (name) {
+                for (let i = 0; i < name.length; i++) {
+                    hash = name.charCodeAt(i) + ((hash << 5) - hash);
+                }
+            }
+            const index = Math.abs(hash) % colors.length;
+            return colors[index];
+        }
+
+        function highlightFeature(e) {
+            var layer = e.target;
+
+            layer.setStyle({
+                weight: 3,
+                color: '#666',
+                dashArray: '',
+                fillOpacity: 0.9
+            });
+
+            layer.bringToFront();
+        }
+
+        function resetHighlight(e) {
+            var layer = e.target;
+            layer.setStyle({
+                weight: 1,
+                color: 'white',
+                dashArray: '3',
+                fillOpacity: 0.7
+            });
+        }
+
+        function onEachFeature(feature, layer) {
+            // Determine state name
+            const stateName = feature.properties.NAME_1 || feature.properties.ST_NM || feature.properties.name;
+
+            // Add permanent label
+            if (stateName) {
+                layer.bindTooltip(stateName, {
+                    permanent: true,
+                    direction: "center",
+                    className: "state-label"
+                });
+            }
+
+            layer.on({
+                mouseover: highlightFeature,
+                mouseout: resetHighlight,
+                click: function (e) {
+                    navigateToState(stateName);
+                }
+            });
+        }
+
+        function navigateToState(stateName) {
+            if (!stateName) return;
+
+            const baseUrl = '../../visit-india/public/popular_places/';
+
+            // Normalize state name for mapping
+            // Remove " (India)" or similar if present, though GeoJSON usually clean
+            // Map GeoJSON names to file names
+            const stateFiles = {
+                'Uttar Pradesh': 'uttar-pradesh.html',
+                'Maharashtra': 'maharashtra.html',
+                'Bihar': 'bihar.html',
+                'West Bengal': 'west-bengal.html',
+                'Madhya Pradesh': 'madhya-pradesh.html',
+                'Tamil Nadu': 'tamil-nadu.html',
+                'Rajasthan': 'rajasthan.html',
+                'Karnataka': 'karnataka.html',
+                'Gujarat': 'gujarat.html',
+                'Andhra Pradesh': 'andhra-pradesh.html',
+                'Odisha': 'odisha.html',
+                'Orissa': 'odisha.html', // Handle variant
+                'Telangana': 'telangana.html',
+                'Kerala': 'kerala.html',
+                'Jharkhand': 'jharkhand.html',
+                'Assam': 'assam.html',
+                'Punjab': 'punjab.html',
+                'Chhattisgarh': 'chhattisgarh.html',
+                'Haryana': 'haryana.html',
+                'Jammu and Kashmir': 'jammu-kashmir.html',
+                'Uttarakhand': 'uttarakhand.html',
+                'Himachal Pradesh': 'himachal-pradesh.html',
+                'Tripura': 'tripura.html',
+                'Meghalaya': 'meghalaya.html',
+                'Manipur': 'manipur.html',
+                'Nagaland': 'nagaland.html',
+                'Goa': 'goa.html',
+                'Arunachal Pradesh': 'arunachal-pradesh.html',
+                'Mizoram': 'mizoram.html',
+                'Sikkim': 'sikkim.html',
+                'Delhi': 'delhi.html',
+                'NCT of Delhi': 'delhi.html',
+                'Puducherry': 'puducherry.html',
+                'Chandigarh': 'chandigarh.html',
+                'Andaman and Nicobar Islands': 'andaman-nicobar.html',
+                'Andaman & Nicobar Islands': 'andaman-nicobar.html',
+                'Dadra and Nagar Haveli': 'dadra-nagar-haveli.html',
+                'Daman and Diu': 'daman-diu.html',
+                'Lakshadweep': 'lakshadweep.html'
+            };
+
+            const filename = stateFiles[stateName];
+            if (filename) {
+                window.location.href = baseUrl + filename;
+            } else {
+                alert('Information for ' + stateName + ' is coming soon!');
+            }
+        }
+    </script>
+</body>
+
+</html>

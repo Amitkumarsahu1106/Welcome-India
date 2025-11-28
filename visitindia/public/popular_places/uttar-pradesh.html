@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Uttar Pradesh</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      color: #fff;
+      text-align: center;
+      overflow-x: hidden;
+      position: relative;
+    }
+    
+    
+    .background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('https://img.etimg.com/thumb/width-1200,height-900,imgsize-49878,resizemode-75,msid-109201411/industry/services/travel/religious-tourism-sees-a-surge-in-uttar-pradesh-ahead-of-festivals.jpg');
+      background-size: cover;
+      background-position: center;
+      filter: blur(6px) brightness(0.5);
+      z-index: -1;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-sizing: border-box;
+      transition: background-color 0.3s;
+    }
+    header:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.5em;
+    }
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    nav ul li {
+      margin: 0 10px;
+    }
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1em;
+      padding: 5px 10px;
+      transition: color 0.3s;
+    }
+    nav ul li a:hover {
+      color: #ffdd57;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      z-index: 2000;
+    }
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background-color: #fff;
+      margin: 3px 0;
+      transition: 0.3s;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      background-color: rgba(0, 0, 0, 0.8);
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+      z-index: 1500;
+      width: 200px;
+      text-align: left;
+    }
+    .dropdown-menu a {
+      display: block;
+      padding: 10px 20px;
+      color: #fff;
+      text-decoration: none;
+    }
+    .dropdown-menu a:hover {
+      background-color: #ffdd57;
+    }
+    .dropdown-menu.show {
+      display: block;
+    }
+
+    .content {
+      position: relative;
+      padding-top: 60px; 
+    }
+
+    .description, .section {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    .section {
+      padding: 40px 20px;
+    }
+
+    .place {
+      background: rgba(0, 0, 0, 0.7);
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .place img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .place h3 {
+      margin: 0;
+      padding: 15px;
+      background: #444;
+    }
+
+    .place p {
+      padding: 0 15px 15px;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 1.2em;
+      }
+      nav ul {
+        display: none; 
+      }
+      .hamburger {
+        display: flex;
+      }
+    }
+  </style>
+    <link rel="stylesheet" href="assistant-responsive.css">
+</head>
+<body>
+  <header>
+    <h1>Welcome to Uttar Pradesh</h1>
+    <div class="hamburger" id="hamburger">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#places">Places</a></li>
+        <li><a href="#food">Food</a></li>
+        <li><a href="#hotels">Hotels</a></li>
+      </ul>
+    </nav>
+    <div class="dropdown-menu" id="dropdownMenu">
+      <a href="#places">Places</a>
+      <a href="#food">Food</a>
+      <a href="#hotels">Hotels</a>
+    </div>
+  </header>
+
+  <div class="background"></div>
+
+  <div class="content">
+    <div class="description">
+      <h2>About Uttar Pradesh</h2>
+      <p>Uttar Pradesh, a northern state in India, is renowned for its rich cultural heritage and historical significance. It is home to iconic landmarks such as the Taj Mahal and the Varanasi ghats, making it a major attraction for tourists. The state's vibrant traditions, festivals, and cuisine offer a unique glimpse into India's diverse cultural tapestry. From the ancient cities of Agra and Lucknow to the spiritual experiences in Varanasi, Uttar Pradesh provides a fascinating journey through India's past and present.</p>
+    </div>
+
+    <section id="places" class="section">
+      <h2>Famous Places in Uttar Pradesh</h2>
+      <div class="place">
+        <img src="https://static.toiimg.com/photo/msid-31346158,width-96,height-65.cms" alt="Agra">
+        <h3>Agra</h3>
+        <p>Known for the magnificent Taj Mahal, Agra is a city rich in Mughal architecture and history.</p>
+      </div>
+      <div class="place">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Ahilya_Ghat_by_the_Ganges%2C_Varanasi.jpg/1200px-Ahilya_Ghat_by_the_Ganges%2C_Varanasi.jpg" alt="Varanasi">
+        <h3>Varanasi</h3>
+        <p>The spiritual heart of India, famous for its ghats along the Ganges River and vibrant culture.</p>
+      </div>
+      <div class="place">
+        <img src="images/lucknow.jpg" alt="Lucknow">
+        <h3>Lucknow</h3>
+        <p>Known for its Nawabi culture, historic monuments, and delectable cuisine.</p>
+      </div>
+      <div class="place">
+        <img src="images/mathura.jpg" alt="Mathura">
+        <h3>Mathura</h3>
+        <p>The birthplace of Lord Krishna, rich in religious and cultural significance.</p>
+      </div>
+      <div class="place">
+        <img src="images/vrindavan.jpg" alt="Vrindavan">
+        <h3>Vrindavan</h3>
+        <p>A sacred town with numerous temples dedicated to Lord Krishna.</p>
+      </div>
+      <div class="place">
+        <img src="images/ayodhya.jpg" alt="Ayodhya">
+        <h3>Ayodhya</h3>
+        <p>Famous for its historical and religious significance as the birthplace of Lord Rama.</p>
+      </div>
+      <div class="place">
+        <img src="images/sarnath.jpg" alt="Sarnath">
+        <h3>Sarnath</h3>
+        <p>A significant Buddhist site where Lord Buddha delivered his first sermon.</p>
+      </div>
+      <div class="place">
+        <img src="images/fatehpur-sikri.jpg" alt="Fatehpur Sikri">
+        <h3>Fatehpur Sikri</h3>
+        <p>A UNESCO World Heritage Site known for its well-preserved Mughal architecture.</p>
+      </div>
+      <div class="place">
+        <img src="images/chitrakoot.jpg" alt="Chitrakoot">
+        <h3>Chitrakoot</h3>
+        <p>A pilgrimage site with numerous temples and holy spots associated with the Ramayana.</p>
+      </div>
+      <div class="place">
+        <img src="images/jhansi.jpg" alt="Jhansi">
+        <h3>Jhansi</h3>
+        <p>Famous for the Jhansi Fort and its role in the 1857 Indian Rebellion.</p>
+      </div>
+      <div class="place">
+        <img src="images/hastinapur.jpg" alt="Hastinapur">
+        <h3>Hastinapur</h3>
+        <p>An ancient city with significant historical and Jain religious sites.</p>
+      </div>
+      <div class="place">
+        <img src="images/dudhwa-national-park.jpg" alt="Dudhwa National Park">
+        <h3>Dudhwa National Park</h3>
+        <p>A protected area with diverse flora and fauna, including the Bengal tiger.</p>
+      </div>
+      <div class="place">
+        <img src="images/national-chambal-wildlife-sanctuary.jpg" alt="National Chambal Wildlife Sanctuary">
+        <h3>National Chambal Wildlife Sanctuary</h3>
+        <p>Known for its riverine ecosystem and rare species like the Ganges river dolphin.</p>
+      </div>
+      <div class="place">
+        <img src="images/bithoor.jpg" alt="Bithoor">
+        <h3>Bithoor</h3>
+        <p>A historical town with sacred spots along the Ganges River.</p>
+      </div>
+      <div class="place">
+        <img src="images/naimisharanya.jpg" alt="Naimisharanya">
+        <h3>Naimisharanya</h3>
+        <p>A revered pilgrimage site with ancient temples and religious significance.</p>
+      </div>
+      <div class="place">
+        <img src="images/pilibhit.jpg" alt="Pilibhit">
+        <h3>Pilibhit</h3>
+        <p>Known for its wildlife sanctuaries and natural beauty.</p>
+      </div>
+      <div class="place">
+        <img src="images/bateshwar-temples.jpg" alt="Bateshwar Temples">
+        <h3>Bateshwar Temples</h3>
+        <p>A group of ancient temples dedicated to Lord Shiva.</p>
+      </div>
+      <div class="place">
+        <img src="images/dewa-sharif.jpg" alt="Dewa Sharif">
+        <h3>Dewa Sharif</h3>
+        <p>A prominent Sufi shrine with spiritual significance.</p>
+      </div>
+      <div class="place">
+        <img src="images/nawabganj-bird-sanctuary.jpg" alt="Nawabganj Bird Sanctuary">
+        <h3>Nawabganj Bird Sanctuary</h3>
+        <p>A sanctuary for a variety of migratory birds.</p>
+      </div>
+      <div class="place">
+        <img src="images/fort-of-unchagaon.jpg" alt="Fort of Unchagaon">
+        <h3>Fort of Unchagaon</h3>
+        <p>A historical fort offering a glimpse into the region's past.</p>
+      </div>
+      <div class="place">
+        <img src="images/barsana.jpg" alt="Barsana">
+        <h3>Barsana</h3>
+        <p>A sacred town known for its Holi celebrations and temples dedicated to Radha.</p>
+      </div>
+      <div class="place">
+        <img src="images/shravasti.jpg" alt="Shravasti">
+        <h3>Shravasti</h3>
+        <p>An ancient city with Buddhist ruins and historical significance.</p>
+      </div>
+      <div class="place">
+        <img src="images/garhmukteshwar.jpg" alt="Garhmukteshwar">
+        <h3>Garhmukteshwar</h3>
+        <p>A pilgrimage site with temples and ghats along the Ganges River.</p>
+      </div>
+      <div class="place">
+        <img src="images/kushinagar.jpg" alt="Kushinagar">
+        <h3>Kushinagar</h3>
+        <p>A major Buddhist site where Lord Buddha attained Nirvana.</p>
+      </div>
+      <div class="place">
+        <img src="images/prayagraj.jpg" alt="Prayagraj">
+        <h3>Prayagraj</h3>
+        <p>Famous for the Kumbh Mela and its historical significance.</p>
+      </div>
+      <div class="place">
+        <img src="images/ganga-river.jpg" alt="Ganga River">
+        <h3>Ganga River</h3>
+        <p>A sacred river with cultural and spiritual importance throughout India.</p>
+      </div>
+      <div class="place">
+        <img src="images/dasaswamedh-ghat.jpg" alt="Dasaswamedh Ghat">
+        <h3>Dasaswamedh Ghat</h3>
+        <p>One of the most prominent ghats in Varanasi, known for its evening aarti.</p>
+      </div>
+      <div class="place">
+        <img src="images/assi-ghat.jpg" alt="Assi Ghat">
+        <h3>Assi Ghat</h3>
+        <p>A historic ghat in Varanasi known for its vibrant atmosphere.</p>
+      </div>
+      <div class="place">
+        <img src="images/manikarnika-ghat.jpg" alt="Manikarnika Ghat">
+        <h3>Manikarnika Ghat</h3>
+        <p>One of the most sacred and oldest ghats in Varanasi, associated with cremation rituals.</p>
+      </div>
+      <div class="place">
+        <img src="images/shri-kashi-vishwanath-temple.jpg" alt="Shri Kashi Vishwanath Temple">
+        <h3>Shri Kashi Vishwanath Temple (Golden Temple)</h3>
+        <p>A revered Hindu temple dedicated to Lord Shiva, known for its golden spire.</p>
+      </div>
+      <div class="place">
+        <img src="images/dlf-mall-of-india.jpg" alt="DLF Mall Of India">
+        <h3>DLF Mall Of India</h3>
+        <p>One of the largest malls in India, offering a range of shopping and entertainment options.</p>
+      </div>
+      <div class="place">
+        <img src="images/the-grand-venice-mall.jpg" alt="The Grand Venice Mall">
+        <h3>The Grand Venice Mall</h3>
+        <p>A unique shopping destination designed to resemble Venice, Italy.</p>
+      </div>
+      <div class="place">
+        <img src="images/kidzania-delhi-ncr.jpg" alt="KidZania Delhi NCR">
+        <h3>KidZania Delhi NCR</h3>
+        <p>An interactive city made for kids, offering educational and fun experiences.</p>
+      </div>
+      <div class="place">
+        <img src="images/bara-imambara.jpg" alt="Bara Imambara">
+        <h3>Bara Imambara</h3>
+        <p>An impressive historical monument in Lucknow, known for its grand architecture.</p>
+      </div>
+      <div class="place">
+        <img src="images/banke-bihari-mandir.jpg" alt="Banke Bihari Mandir">
+        <h3>Banke Bihari Mandir</h3>
+        <p>A popular Hindu temple dedicated to Lord Krishna in Vrindavan.</p>
+      </div>
+      <div class="place">
+        <img src="images/agra-fort.jpg" alt="Agra Fort">
+        <h3>Agra Fort</h3>
+        <p>A UNESCO World Heritage Site, known for its Mughal architecture and historical importance.</p>
+      </div>
+      <div class="place">
+        <img src="images/taj-mahal.jpg" alt="Taj Mahal">
+        <h3>Taj Mahal</h3>
+        <p>The iconic white marble mausoleum and one of the Seven Wonders of the World.</p>
+      </div>
+    </section>
+
+    <section id="food" class="section">
+      <h2>Food in Uttar Pradesh</h2>
+      <p>Discover the diverse and delicious cuisine of Uttar Pradesh.</p>
+      
+    </section>
+
+    <section id="hotels" class="section">
+      <h2>Hotels in Uttar Pradesh</h2>
+      <p>Find the best places to stay while visiting Uttar Pradesh.</p>
+      
+    </section>
+  </div>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+
+    hamburger.addEventListener('click', () => {
+      dropdownMenu.classList.toggle('show');
+    });
+
+   
+    document.querySelectorAll('nav a, .dropdown-menu a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        window.scrollTo({
+          top: targetElement.offsetTop - 60, 
+          behavior: 'smooth'
+        });
+        dropdownMenu.classList.remove('show');
+      });
+    });
+  </script>
+</body>
+</html>

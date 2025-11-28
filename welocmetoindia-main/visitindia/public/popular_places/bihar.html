@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visit Bihar</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      color: #333;
+      text-align: center;
+      overflow-x: hidden;
+    }
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-sizing: border-box;
+      transition: background-color 0.3s;
+    }
+    header:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.5em;
+    }
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    nav ul li {
+      margin: 0 10px;
+    }
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1em;
+      padding: 5px 10px;
+      transition: color 0.3s;
+    }
+    nav ul li a:hover {
+      color: #ffdd57;
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      z-index: 2000;
+    }
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background-color: #fff;
+      margin: 3px 0;
+      transition: 0.3s;
+    }
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      background-color: rgba(0, 0, 0, 0.8);
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+      z-index: 1500;
+      width: 200px;
+      text-align: left;
+    }
+    .dropdown-menu a {
+      display: block;
+      padding: 10px 20px;
+      color: #fff;
+      text-decoration: none;
+    }
+    .dropdown-menu a:hover {
+      background-color: #ffdd57;
+    }
+    .dropdown-menu.show {
+      display: block;
+    }
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      box-sizing: border-box;
+      color: #fff;
+      z-index: 1;
+    }
+    .background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Bihar_India.jpg/1920px-Bihar_India.jpg');
+      background-size: cover;
+      background-position: center;
+      filter: blur(6px) brightness(0.6);
+      z-index: -1;
+    }
+    .section {
+      padding: 60px 20px;
+      box-sizing: border-box;
+    }
+    .place {
+      margin: 20px;
+      text-align: left;
+      color: #fff;
+    }
+    .place img {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      border-radius: 10px;
+    }
+    .place h3 {
+      margin-top: 10px;
+      font-size: 1.2em;
+    }
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 1.2em;
+      }
+      nav ul {
+        display: none; 
+      }
+      .hamburger {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Visit Bihar</h1>
+    <div class="hamburger" id="hamburger">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#places">Places</a></li>
+        <li><a href="#food">Food</a></li>
+        <li><a href="#hotels">Hotels</a></li>
+      </ul>
+    </nav>
+    <div class="dropdown-menu" id="dropdownMenu">
+      <a href="#places">Places</a>
+      <a href="#food">Food</a>
+      <a href="#hotels">Hotels</a>
+    </div>
+  </header>
+  <div class="background"></div>
+  <div class="content">
+    <section id="places" class="section">
+      <h2>Famous Places in Bihar</h2>
+      <div class="place">
+        <img src="images/bodh-gaya.jpg" alt="Bodh Gaya">
+        <h3>Bodh Gaya</h3>
+        <p>A major Buddhist pilgrimage site where Buddha attained enlightenment.</p>
+      </div>
+      <div class="place">
+        <img src="images/nalanda.jpg" alt="Nalanda">
+        <h3>Nalanda</h3>
+        <p>Ancient center of learning and one of the world's first residential universities.</p>
+      </div>
+      <div class="place">
+        <img src="images/patna.jpg" alt="Patna">
+        <h3>Patna</h3>
+        <p>The state capital known for its historical sites and vibrant culture.</p>
+      </div>
+      <div class="place">
+        <img src="images/pawapuri.jpg" alt="Pawapuri">
+        <h3>Pawapuri</h3>
+        <p>A sacred Jain pilgrimage site where Lord Mahavira attained nirvana.</p>
+      </div>
+      <div class="place">
+        <img src="images/rajgir.jpg" alt="Rajgir">
+        <h3>Rajgir</h3>
+        <p>An ancient city with historical and religious significance, including Buddhist and Jain sites.</p>
+      </div>
+      <div class="place">
+        <img src="images/vaishali.jpg" alt="Vaishali">
+        <h3>Vaishali</h3>
+        <p>An important historical and archaeological site with Buddhist and Jain ruins.</p>
+      </div>
+      <div class="place">
+        <img src="images/katihar.jpg" alt="Katihar">
+        <h3>Katihar</h3>
+        <p>Known for its natural beauty and historical significance.</p>
+      </div>
+      <div class="place">
+        <img src="images/madhubani.jpg" alt="Madhubani">
+        <h3>Madhubani</h3>
+        <p>Famous for its traditional Madhubani art and cultural heritage.</p>
+      </div>
+      <div class="place">
+        <img src="images/sasaram.jpg" alt="Sasaram">
+        <h3>Sasaram</h3>
+        <p>Known for its historical monuments, including the tomb of Sher Shah Suri.</p>
+      </div>
+      <div class="place">
+        <img src="images/kushinagar.jpg" alt="Kushinagar">
+        <h3>Kushinagar</h3>
+        <p>A significant Buddhist site where Buddha is believed to have passed away.</p>
+      </div>
+    </section>
+
+    <section id="food" class="section">
+      <h2>Food in Bihar</h2>
+      <p>Bihar's cuisine is known for its simplicity and rich flavors. Popular dishes include litti chokha, sattu paratha, and the sweet delicacy of khaja. The food is often enjoyed with a side of traditional pickles and chaas.</p>
+    
+    </section>
+
+    <section id="hotels" class="section">
+      <h2>Hotels in Bihar</h2>
+      <p>Bihar offers a variety of accommodation options, from budget hotels in Patna to heritage stays in historical areas. Choices range from luxury to economical stays suited for different needs.</p>
+    </section>
+  </div>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+    const navLinks = document.querySelectorAll('nav ul li a');
+
+    hamburger.addEventListener('click', () => {
+      dropdownMenu.classList.toggle('show');
+    });
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        window.scrollTo({
+          top: targetElement.offsetTop - 60,
+          behavior: 'smooth'
+        });
+        dropdownMenu.classList.remove('show');
+      });
+    });
+  </script>
+</body>
+</html>

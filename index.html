@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visit India</title>
+  <link rel="stylesheet" href="./public/assets/css/main.css">
+  <style>
+    /* Accessibility helper */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Visit India</h1>
+
+    <div class="hamburger" id="hamburger">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="public/assets/about-me.html">About Me</a></li>
+        <li><a href="public/assets/login.html">Login</a></li>
+        <li><a href="public/assets/map.html">Map</a></li>
+      </ul>
+    </nav>
+
+    <div class="dropdown-menu" id="dropdownMenu">
+      <a href="#home">Home</a>
+      <a href="public/assets/about-me.html">About Me</a>
+      <a href="public/assets/login.html">Login</a>
+      <a href="public/assets/map.html">Map</a>
+    </div>
+  </header>
+
+  <!-- Chatbot Widget -->
+  <div class="chatbot-widget">
+    <button id="popupButton" class="round-button" title="Welcome to Visit India Bot" aria-label="Open Chatbot"></button>
+
+    <div id="popup" class="popup">
+      <div class="chatbot-container">
+        <div class="chatbot-header">
+          <img src="https://m.media-amazon.com/images/I/31MqR2pPE5L._AC_.jpg" alt="Chatbot Icon" class="header-icon">
+          <h2 id="heading">INDIAN CULTURE CHATBOT</h2>
+        </div>
+        <div class="chatbot-body" id="chatbot-body">
+          <div class="bot-message">Hello! I am your Indian Culture guide. Ask me anything!</div>
+        </div>
+        <div class="chatbot-footer">
+          <input type="text" id="user-input" placeholder="Type your question here..." aria-label="Type your question" />
+          <button onclick="startVoiceRecognition()" class="voice-button" aria-label="Start Voice Recognition">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+              <path fill="white"
+                d="M12 15a3 3 0 003-3V6a3 3 0 10-6 0v6a3 3 0 003 3zm6-3a6.002 6.002 0 01-5 5.917V21a1 1 0 11-2 0v-3.083A6.002 6.002 0 016 12a1 1 0 112 0 4 4 0 108 0 1 1 0 112 0z" />
+            </svg>
+          </button>
+          <button onclick="sendMessage()" class="send-button" aria-label="Send Message">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+              <path fill="white"
+                d="M1.5 12L23 1.5 16.5 24l-5.25-7.5L1.5 12zm6.75-1.5l4.5 4.5-2.25 6.75L21 4.5 8.25 10.5z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="background"></div>
+
+  <div class="main-content">
+    <!-- State Selection -->
+    <div class="select-state">
+      <label for="state-select" class="sr-only">Select a State</label>
+      <select id="state-select">
+        <option value="">Select a State</option>
+        <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+        <option value="Andhra Pradesh">Andhra Pradesh</option>
+        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+        <option value="Assam">Assam</option>
+        <option value="Bihar">Bihar</option>
+        <option value="Chandigarh">Chandigarh</option>
+        <option value="Chhattisgarh">Chhattisgarh</option>
+        <option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
+        <option value="Daman and Diu">Daman and Diu</option>
+        <option value="Delhi">Delhi</option>
+        <option value="Goa">Goa</option>
+        <option value="Gujarat">Gujarat</option>
+        <option value="Haryana">Haryana</option>
+        <option value="Himachal Pradesh">Himachal Pradesh</option>
+        <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+        <option value="Jharkhand">Jharkhand</option>
+        <option value="Karnataka">Karnataka</option>
+        <option value="Kerala">Kerala</option>
+        <option value="Lakshadweep">Lakshadweep</option>
+        <option value="Madhya Pradesh">Madhya Pradesh</option>
+        <option value="Maharashtra">Maharashtra</option>
+        <option value="Manipur">Manipur</option>
+        <option value="Meghalaya">Meghalaya</option>
+        <option value="Mizoram">Mizoram</option>
+        <option value="Nagaland">Nagaland</option>
+        <option value="Odisha">Odisha</option>
+        <option value="Puducherry">Puducherry</option>
+        <option value="Punjab">Punjab</option>
+        <option value="Rajasthan">Rajasthan</option>
+        <option value="Sikkim">Sikkim</option>
+        <option value="Tamil Nadu">Tamil Nadu</option>
+        <option value="Telangana">Telangana</option>
+        <option value="Tripura">Tripura</option>
+        <option value="Uttar Pradesh">Uttar Pradesh</option>
+        <option value="Uttarakhand">Uttarakhand</option>
+        <option value="West Bengal">West Bengal</option>
+      </select>
+    </div>
+
+    <!-- Welcome Section -->
+    <div class="welcome-message">
+      <h2>Welcome to the Visit India Website</h2>
+      <p>Discover the rich culture, history, and beauty of India.</p>
+    </div>
+
+    <!-- Search Section -->
+    <div class="search-section">
+      <form id="searchForm" onsubmit="searchState(); return false;"
+        style="width: 100%; display: flex; justify-content: center;">
+        <div class="search-container">
+          <!-- Left Search Icon -->
+          <div class="search-icon-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#888"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </div>
+
+          <label for="searchInput" class="sr-only">Search for a state</label>
+          <input type="text" id="searchInput" placeholder="Type here..." onkeyup="showSuggestions()">
+
+          <!-- Mic Button -->
+          <button type="button" class="mic-button" aria-label="Voice Search" onclick="startVoiceRecognition()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+              <path fill="currentColor"
+                d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z" />
+              <path fill="currentColor"
+                d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z" />
+            </svg>
+          </button>
+
+          <!-- Search Submit Button -->
+          <button type="submit" class="search-submit-btn">Search</button>
+        </div>
+      </form>
+      <div class="suggestions" id="suggestions"></div>
+    </div>
+
+    <!-- Slider Section -->
+    <section class="slider-section">
+      <div class="slider-container">
+        <div class="wgh-slider">
+          <input class="wgh-slider-target" type="radio" id="slide-1" name="slider" />
+          <input class="wgh-slider-target" type="radio" id="slide-2" name="slider" />
+          <input class="wgh-slider-target" type="radio" id="slide-3" name="slider" checked="checked" />
+          <input class="wgh-slider-target" type="radio" id="slide-4" name="slider" />
+          <input class="wgh-slider-target" type="radio" id="slide-5" name="slider" />
+
+          <div class="wgh-slider__viewport">
+            <div class="wgh-slider__viewbox">
+              <div class="wgh-slider__container">
+                <div class="wgh-slider-item">
+                  <div class="wgh-slider-item__inner">
+                    <figure class="wgh-slider-item-figure">
+                      <img class="wgh-slider-item-figure__image"
+                        src="https://img.paisawapas.com/ovz3vew9pw/2022/09/06191305/Rectangle-1-2022-09-06T191239.216.png"
+                        alt="India Landscape 1" />
+                      <figcaption class="wgh-slider-item-figure__caption">
+                        <a href="#">Explore</a>
+                        <span>Beautiful Landscapes</span>
+                      </figcaption>
+                    </figure>
+                    <label class="wgh-slider-item__trigger" for="slide-1" title="Show product 1"></label>
+                  </div>
+                </div>
+                <div class="wgh-slider-item">
+                  <div class="wgh-slider-item__inner">
+                    <figure class="wgh-slider-item-figure">
+                      <img class="wgh-slider-item-figure__image"
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSk3j792qMW5f1FwnRGCvVSiUjNETOcPZ0DTg&s"
+                        alt="India Landscape 2" />
+                      <figcaption class="wgh-slider-item-figure__caption">
+                        <a href="#">Culture</a>
+                        <span>Rich Heritage</span>
+                      </figcaption>
+                    </figure>
+                    <label class="wgh-slider-item__trigger" for="slide-2" title="Show product 2"></label>
+                  </div>
+                </div>
+                <div class="wgh-slider-item">
+                  <div class="wgh-slider-item__inner">
+                    <figure class="wgh-slider-item-figure">
+                      <img class="wgh-slider-item-figure__image"
+                        src="https://static.toiimg.com/thumb/msid-89433382,width-748,height-499,resizemode=4,imgsize-89030/.jpg"
+                        alt="India Landscape 3" />
+                      <figcaption class="wgh-slider-item-figure__caption">
+                        <a href="#">Travel</a>
+                        <span>Amazing Destinations</span>
+                      </figcaption>
+                    </figure>
+                    <label class="wgh-slider-item__trigger" for="slide-3" title="Show product 3"></label>
+                  </div>
+                </div>
+                <div class="wgh-slider-item">
+                  <div class="wgh-slider-item__inner">
+                    <figure class="wgh-slider-item-figure">
+                      <img class="wgh-slider-item-figure__image"
+                        src="https://www.planetware.com/wpimages/2022/03/india-best-places-to-visit-mcleod-ganj.jpg"
+                        alt="India Landscape 4" />
+                      <figcaption class="wgh-slider-item-figure__caption">
+                        <a href="#">Nature</a>
+                        <span>Serene Views</span>
+                      </figcaption>
+                    </figure>
+                    <label class="wgh-slider-item__trigger" for="slide-4" title="Show product 4"></label>
+                  </div>
+                </div>
+                <div class="wgh-slider-item">
+                  <div class="wgh-slider-item__inner">
+                    <figure class="wgh-slider-item-figure">
+                      <img class="wgh-slider-item-figure__image"
+                        src="https://blog-content.ixigo.com/wp-content/uploads/2019/08/blogpmmodi1.jpg"
+                        alt="India Landscape 5" />
+                      <figcaption class="wgh-slider-item-figure__caption">
+                        <a href="#">History</a>
+                        <span>Timeless Monuments</span>
+                      </figcaption>
+                    </figure>
+                    <label class="wgh-slider-item__trigger" for="slide-5" title="Show product 5"></label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About / Discover Section -->
+    <section class="discover" id="home">
+      <div class="discover-content">
+        <h4>About Visit India</h4>
+        <p>
+          Welcome to "Visit India," your ultimate guide to exploring the rich cultural heritage, diverse traditions, and
+          culinary delights of India. Our website is dedicated to providing comprehensive information about the vibrant
+          cultures, traditional food items, and the best accommodations available across this incredible country.
+          Whether
+          you're a traveler planning your next adventure, a food enthusiast eager to explore regional cuisines, or
+          simply
+          curious about India's diverse traditions, "Visit India" is your go-to resource.
+        </p>
+        <br>
+
+        <h4>Discover India’s Cultural Tapestry</h4>
+        <p>
+          India is a land of incredible diversity, with each state offering its unique blend of languages, customs,
+          festivals, and art forms. From the colorful festivals of Rajasthan to the classical dance forms of Kerala, our
+          website offers detailed insights into the various cultural practices that make India a mosaic of traditions.
+          We
+          provide in-depth articles, videos, and photo galleries that explore everything from the ancient practices of
+          yoga
+          and meditation to the contemporary art and music scenes thriving in urban centers.
+        </p>
+        <p>
+          Our platform is designed to help you navigate through the rich cultural landscapes of India. Whether you're
+          interested in the intricate handlooms of Varanasi, the tribal art of Madhya Pradesh, or the spiritual rituals
+          of
+          Varanasi, we have curated content that captures the essence of India’s cultural diversity. Additionally, our
+          culture section includes information on regional festivals, traditional attire, and the history behind India’s
+          many monuments and heritage sites.
+        </p>
+        <br>
+
+        <h4>Savor the Flavors of India</h4>
+        <p>
+          India’s cuisine is as diverse as its culture, with each region offering a unique culinary experience. "Visit
+          India" takes you on a gastronomic journey through the country, showcasing traditional food items that have
+          been
+          passed down through generations. From the spicy street food of Mumbai to the royal dishes of Lucknow, we cover
+          a
+          wide range of culinary delights that cater to every palate. Our food section features authentic recipes,
+          restaurant recommendations, and stories behind India’s famous dishes. Whether you're a fan of the fiery
+          curries of
+          the South or the sweet treats of the North, our website has something for every food lover.
+        </p>
+        <p>
+          We also provide information on food festivals, local eateries, and gourmet experiences that allow you to
+          indulge
+          in the flavors of India. Our goal is to help you discover the hidden gems of Indian cuisine and experience the
+          true taste of the country. Additionally, we highlight the best places to stay, from luxury hotels to
+          budget-friendly accommodations, ensuring that you have a comfortable and memorable stay in India.
+        </p>
+        <br>
+      </div>
+    </section>
+  </div>
+
+  <script src="./public/assets/js/main.js?v=2"></script>
+</body>
+
+</html>
